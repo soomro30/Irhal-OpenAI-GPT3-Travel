@@ -20,7 +20,13 @@ const Form = () => {
   const [startDate, setStartDate] = useState(new Date());
   const ref = useRef();
 
-  let html = ``;
+function handleClick() {
+  // Create the result URL
+  const resultUrl = "https://example.com/result";
+  
+  // Open the result in a new tab
+  window.open(resultUrl, "_blank");
+}
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log(inputRef.current!.value, inputRef1.current!.value, inputRef2.current!.value)
@@ -51,13 +57,7 @@ const Form = () => {
       return
     }
     setMessage('<code  className="whitespace-pre-wrap text-lg" >Here is your <span className="no-underline font-bold text-slate-50">'+ inputRef1.current!.value+'</span> days muslim travel friendly itinerary to <a className="no-underline font-bold text-slate-50 hover:underline" href="https://irhal.org/travel-guide/'+inputRef.current!.value+'">'+inputRef.current!.value+'</a></code><br/><br/>');
-    html = `
-  <p id="main">
-    <span class="prettify">
-      keep me and make me pretty!
-    </span>
-  </p>
-`;
+    
     const reader = data.getReader()
     const decoder = new TextDecoder()
     let done = false
@@ -123,6 +123,10 @@ const Form = () => {
         >
           Generate itinerary
         </button>
+
+        <div>
+      <button onClick={handleClick}>Click me!</button>
+    </div>
       </form>
       <div className='w-full rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-4 outline-none placeholder-slate-700 flex flex-row justify-between mt-4'>
   
