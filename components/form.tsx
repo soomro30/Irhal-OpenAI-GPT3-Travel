@@ -117,14 +117,14 @@ const Form = () => {
           <DatePicker className='w-full mt-4 rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-5 outline-none placeholder-slate-700' selected={startDate} onChange={(date: Date) => setStartDate(date!)} />
 
           <select
-             className='block w-full px-4 py-3 mt-4 rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-5 outline-none placeholder-slate-700'
+             className='data-te-select-size="lg" w-full px-4 py-3 mt-4 rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-5 outline-none placeholder-slate-700'
              ref={inputRef2}
              required
              placeholder='Trip Budget '
             // value={accommodationType}
             // onChange={(e) => setAccommodationType(e.target.value)}
             >
-            <option value="" disabled selected hidden>Select budget type</option>
+            <option value="">Select budget type</option>
             <option value="Expensive">Expensive</option>
             <option value="Moderate">Moderate</option>
             <option value="Budget">Budget</option>
