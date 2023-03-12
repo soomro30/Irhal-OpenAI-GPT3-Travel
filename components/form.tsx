@@ -4,7 +4,9 @@ import { Icons } from './icons'
 import { Button } from './ui/button'
 import { FaWhatsapp, FaEnvelope, FaTwitter } from 'react-icons/fa';
 import parse from 'html-react-parser';
+import DatePicker from "react-datepicker";
 
+import "react-datepicker/dist/react-datepicker.css";
 
 const Form = () => {
   const inputRef = useRef<HTMLInputElement>(null)
@@ -15,6 +17,7 @@ const Form = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [hasCopied, setHasCopied] = useState(false)
   const [message, setMessage] = useState("")
+  const [startDate, setStartDate] = useState(new Date());
   const ref = useRef();
 
   let html = ``;
@@ -30,8 +33,8 @@ const Form = () => {
       body: JSON.stringify({
         input: inputRef.current!.value,
         duration: inputRef1.current!.value,
-        tripDate: inputRef2.current!.value,
-        budgetType: inputRef3.current!.value,
+        tripDate: startDate,
+        budgetType: inputRef2.current!.value,
       }),
     })
 
@@ -47,7 +50,7 @@ const Form = () => {
     if (!data) {
       return
     }
-    setMessage('<code  className="whitespace-pre-wrap text-lg" >Here is your <span className="no-underline font-bold text-slate-50">'+ inputRef1.current!.value+'</span> days halal travel itinerary to <a className="no-underline font-bold text-slate-50 hover:underline" href="https://irhal.org/travel-guide/'+inputRef.current!.value+'">'+inputRef.current!.value+'</a></code><br/><br/>');
+    setMessage('<code  className="whitespace-pre-wrap text-lg" >Here is your <span className="no-underline font-bold text-slate-50">'+ inputRef1.current!.value+'</span> days muslim travel friendly itinerary to <a className="no-underline font-bold text-slate-50 hover:underline" href="https://irhal.org/travel-guide/'+inputRef.current!.value+'">'+inputRef.current!.value+'</a></code><br/><br/>');
     html = `
   <p id="main">
     <span class="prettify">
@@ -97,7 +100,7 @@ const Form = () => {
           required
         />
 
-        <input
+        {/* <input
           ref={inputRef3}
           required
           type="text"
@@ -110,7 +113,8 @@ const Form = () => {
           placeholder="trip start date"
           
           className='block w-full px-4 py-3 mt-4 rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-5 outline-none placeholder-slate-700'
-          />
+          /> */}
+          <DatePicker className='w-full mt-4 rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-5 outline-none placeholder-slate-700' selected={startDate}   onChange={(date) => setStartDate(date)} placeholderText='Please select a date'  />
 
           <select
              className='block w-full px-4 py-3 mt-4 rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-5 outline-none placeholder-slate-700'
@@ -135,7 +139,7 @@ const Form = () => {
       </form>
       <div className='w-full rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-4 outline-none placeholder-slate-700 flex flex-row justify-between mt-4'>
   
-    <div>
+    <div className="p-4">
     {response && (parse(message) )}
       <code className='text-md whitespace-pre-wrap'>{response.join('')}</code>
       <code  className="whitespace-pre-wrap text-lg ">
