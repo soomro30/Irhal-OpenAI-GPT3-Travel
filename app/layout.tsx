@@ -6,9 +6,9 @@ import { cn } from '@/lib/utils'
 import { SiteHeader } from '@/components/site-header'
 
 export const metadata = {
-  title: 'Regex AI - Generate Regex Expressions by defining prompts',
+  title: 'Irhal.com - Islamic Travel Guide for Muslim Travelers',
   description:
-    "Generate Regex Expressions by defining prompts using OpenAI's GPT-3 API",
+    "Build your muslim traveler friendly itinerary, powered by ChatGPT-3. Irhal.com, your AI Islamic travel assistant.",
 }
 
 const fontSans = FontSans({

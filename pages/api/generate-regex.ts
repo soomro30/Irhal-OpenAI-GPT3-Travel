@@ -15,9 +15,41 @@ export default async function handler(request: Request) {
 
   function generatePrompt(data: string) {
     const prompt = `
-  Generate a regular expression using the following requirements.
-  Requirements: The regular expression must match the following pattern - ${data}.
-  Result:
+    Create a detailed and informative itenary, which is clear and organized. 
+    Use a day-by-day format, where each day has a header with the day counter, date, and a short summary. 
+    Define each day's activities in detail, and add italicized historical information. 
+    Highlight places and activities with bold text. Add transport, and accomondation recomondations.
+    
+    Other rules: 
+    - use only public transport and apps like Uber
+    
+    Create a travel itenary, based on the following:
+    Start date: 2023.10.21 21:00
+    Trip Duration: 2 days
+    Travel method: Air
+    Destination: London
+    Travel buget: Medium
+    
+    Things I want to see/experience: 
+    - Experience local culture
+    - Famous places to visit
+  
+    Foods/drinks I want to try(give place recomendations):
+    - Halal Restaurants
+    - Vegeterian 
+    - Seafood
+  
+   At the end of the itenary, include the followings:
+    - 5 Daily prayers timings
+    - Famous halal restaurants
+    - Emergency and important phone numbers
+    - Dangerous areas on my destinations
+    - Possible dangers
+    - Good accomondations
+    - Information about the local gastronomy
+    - Local customs, rules to be aware of
+    - Any extra tips to have a great holiday
+    - Short summary from the places not made it to the itenary, but could
   `
     return prompt
   }
@@ -35,7 +67,7 @@ export default async function handler(request: Request) {
     top_p: 1,
     frequency_penalty: 0,
     presence_penalty: 0,
-    max_tokens: 200,
+    max_tokens: 1,
     stream: true,
     n: 1,
   }

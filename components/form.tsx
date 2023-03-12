@@ -2,16 +2,25 @@
 import { useRef, useState } from 'react'
 import { Icons } from './icons'
 import { Button } from './ui/button'
+import { FaWhatsapp, FaEnvelope, FaTwitter } from 'react-icons/fa';
+import parse from 'html-react-parser';
+
 
 const Form = () => {
   const inputRef = useRef<HTMLInputElement>(null)
+  const inputRef1 = useRef<HTMLInputElement>(null)
+  const inputRef2 = useRef<HTMLSelectElement>(null)
+  const inputRef3 = useRef<HTMLInputElement>(null)
   const [response, setResponse] = useState<string[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [hasCopied, setHasCopied] = useState(false)
+  const [message, setMessage] = useState("")
+  const ref = useRef();
 
+  let html = ``;
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(inputRef.current!.value)
+    console.log(inputRef.current!.value, inputRef1.current!.value, inputRef2.current!.value)
 
     const response = await fetch('/api/generate-regex', {
       method: 'POST',
@@ -20,6 +29,9 @@ const Form = () => {
       },
       body: JSON.stringify({
         input: inputRef.current!.value,
+        duration: inputRef1.current!.value,
+        tripDate: inputRef2.current!.value,
+        budgetType: inputRef3.current!.value,
       }),
     })
 
@@ -35,7 +47,14 @@ const Form = () => {
     if (!data) {
       return
     }
-
+    setMessage('<p className="text-lg" >Here is your <span className="no-underline font-bold text-slate-50">'+ inputRef1.current!.value+'</span> days halal travel itinerary to <a className="no-underline font-bold text-slate-50 hover:underline" href="https://irhal.org/travel-guide/'+inputRef.current!.value+'">'+inputRef.current!.value+'</a></p>');
+    html = `
+  <p id="main">
+    <span class="prettify">
+      keep me and make me pretty!
+    </span>
+  </p>
+`;
     const reader = data.getReader()
     const decoder = new TextDecoder()
     let done = false
@@ -64,24 +83,83 @@ const Form = () => {
         <input
           name='prompt'
           type='text'
-          placeholder='email, phone number, etc.'
+          placeholder='city name e.g London, New York, Oslo'
           className='w-full rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-5 outline-none placeholder-slate-700'
           ref={inputRef}
           required
         />
+       <input
+          name='duration'
+          type='number'
+          placeholder='trip duration in days '
+          className='w-full mt-4 rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-5 outline-none placeholder-slate-700'
+          ref={inputRef1}
+          required
+        />
+
+        <input
+          ref={inputRef3}
+          required
+          type="text"
+          onFocus={
+           (e)=> {
+             e.currentTarget.type = "date";
+             e.currentTarget.focus();
+            }
+          }
+          placeholder="trip start date"
+          
+          className='w-full mt-4 rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-5 outline-none placeholder-slate-700'
+          />
+
+          <select
+             className='w-full mt-4 rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-5 outline-none placeholder-slate-700'
+             ref={inputRef2}
+             required
+             placeholder='Trip Budget '
+            // value={accommodationType}
+            // onChange={(e) => setAccommodationType(e.target.value)}
+            >
+            <option value="" disabled selected hidden>Select budget type</option>
+            <option value="Expensive">Expensive</option>
+            <option value="Moderate">Moderate</option>
+            <option value="Budget">Budget</option>
+            
+          </select>
         <button
           type='submit'
           className='mt-4 w-full rounded-md bg-slate-300 dark:bg-slate-700 px-8 py-2.5 text-base dark:hover:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-zinc-600 disabled:cursor-not-allowed disabled:opacity-50'
         >
-          Generate
+          Generate itinerary
         </button>
       </form>
       <div className='w-full rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-4 outline-none placeholder-slate-700 flex flex-row justify-between mt-4'>
-        <code className='text-xl'>{response.join('')}</code>
+  
+    <div>
+    {response && (parse(message) )}
+      <code className='text-md whitespace-pre-wrap'>{response.join('')}</code>
+      <h2 className="text-md ">
+        Visit <a className="no-underline font-bold text-slate-50 hover:underline "  href={`https://irhal.org/`} >Irhal</a> for Muslim travelers friendly information.
+      </h2>
+      <div className='flex flex-row justify-between mt-4'>
         <Button variant='ghost' size='sm' onClick={handleCopy}>
-          {hasCopied ? <Icons.check /> : <Icons.copy />}
+          {hasCopied ? <Icons.check className='text-3xl text-green-500 hover:text-green-600 cursor-pointer' /> : <Icons.copy className='text-3xl text-gray-500 hover:text-gray-600 cursor-pointer' />}
         </Button>
+        <div className='flex flex-row'>
+          <a href={`https://wa.me/?text=${encodeURIComponent(response.join(''))}`} target='_blank' rel='noreferrer'>
+            <FaWhatsapp className='mx-2 text-4xl text-green-500 hover:text-green-600 cursor-pointer' />
+          </a>
+          <a href={`mailto:?subject=Itinerary&body=${encodeURIComponent(response.join(''))}`} target='_blank' rel='noreferrer'>
+            <FaEnvelope className='mx-2 text-4xl text-yellow-500 hover:text-yellow-600 cursor-pointer' />
+          </a>
+          <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(response.join(''))}`} target='_blank' rel='noreferrer'>
+            <FaTwitter className='mx-2 text-4xl text-blue-500 hover:text-blue-600 cursor-pointer' />
+          </a>
+        </div>
       </div>
+    </div>
+ 
+</div>
     </>
   )
 }

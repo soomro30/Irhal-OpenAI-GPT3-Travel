@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.input-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .input-wrapper {
+    display: inline-block;
+    width: calc(50% - 10px);
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .input-wrapper:last-child {
+    margin-right: 0;
+  }
