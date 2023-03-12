@@ -5,8 +5,8 @@ import { Button } from './ui/button'
 import { FaWhatsapp, FaEnvelope, FaTwitter } from 'react-icons/fa';
 import parse from 'html-react-parser';
 import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
+
 
 const Form = () => {
   const inputRef = useRef<HTMLInputElement>(null)
@@ -128,7 +128,7 @@ const Form = () => {
   
     <div className="p-4">
     {response && (parse(message) )}
-      <code className='text-md whitespace-pre-wrap'>{response.join('')}</code>
+      <code className='text-md whitespace-pre-wrap'>{parse(response.join(''))}</code>
       {/* <code  className="whitespace-pre-wrap text-lg ">
         <br/><br/>
         Visit <a className="no-underline font-bold text-slate-50 hover:underline "  href={`https://irhal.org/`} >Irhal</a> for Muslim travelers friendly information.
@@ -138,13 +138,13 @@ const Form = () => {
           {hasCopied ? <Icons.check className='text-3xl text-green-500 hover:text-green-600 cursor-pointer' /> : <Icons.copy className='text-3xl text-gray-500 hover:text-gray-600 cursor-pointer' />}
         </Button>
         <div className='flex flex-row'>
-          <a className='text-md whitespace-pre-wrap' href={`https://wa.me/?text=${encodeURIComponent(response.join(''))}`} target='_blank' rel='noreferrer'>
+          <a className='text-md whitespace-pre-wrap' href={`https://wa.me/?text=${encodeURIComponent(parse(message)+'<br/>'+response.join(''))}`} target='_blank' rel='noreferrer'>
             <FaWhatsapp className='mx-2 text-4xl text-green-500 hover:text-green-600 cursor-pointer' />
           </a>
-          <a className='text-md whitespace-pre-wrap' href={`mailto:?subject=Itinerary&body=${encodeURIComponent(response.join(''))}`} target='_blank' rel='noreferrer'>
+          <a className='text-md whitespace-pre-wrap' href={`mailto:?subject=Itinerary&body=${encodeURIComponent(parse(message)+'<br/>'+response.join(''))}`} target='_blank' rel='noreferrer'>
             <FaEnvelope className='mx-2 text-4xl text-yellow-500 hover:text-yellow-600 cursor-pointer' />
           </a>
-          <a className='text-md whitespace-pre-wrap' href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(response.join(''))}`} target='_blank' rel='noreferrer'>
+          <a className='text-md whitespace-pre-wrap' href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(parse(message)+'<br/>'+response.join(''))}`} target='_blank' rel='noreferrer'>
             <FaTwitter className='mx-2 text-4xl text-blue-500 hover:text-blue-600 cursor-pointer' />
           </a>
         </div>
