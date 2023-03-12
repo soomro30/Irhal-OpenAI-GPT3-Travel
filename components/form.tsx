@@ -100,20 +100,7 @@ const Form = () => {
           required
         />
 
-        {/* <input
-          ref={inputRef3}
-          required
-          type="text"
-          onFocus={
-           (e)=> {
-             e.currentTarget.type = "date";
-             e.currentTarget.focus();
-            }
-          }
-          placeholder="trip start date"
-          
-          className='block w-full px-4 py-3 mt-4 rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-5 outline-none placeholder-slate-700'
-          /> */}
+        
           <DatePicker className='w-full mt-4 rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-5 outline-none placeholder-slate-700' selected={startDate} onChange={(date: Date) => setStartDate(date!)} />
 
           <select 
