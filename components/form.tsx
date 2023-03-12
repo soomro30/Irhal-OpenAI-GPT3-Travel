@@ -87,7 +87,7 @@ const Form = () => {
           name='prompt'
           type='text'
           placeholder='city name e.g London, New York, Oslo'
-          className='w-full rounded-md bg-slate-400 dark:placeholder-slate-500 dark:bg-slate-200 px-2 py-5 outline-4 placeholder-slate-700	'
+          className='w-full rounded-md bg-slate-400 text-slate-500 dark:placeholder-slate-500 dark:bg-slate-200 px-2 py-5 outline-4 placeholder-slate-700	'
           ref={inputRef}
           required
         />
@@ -95,7 +95,7 @@ const Form = () => {
           name='duration'
           type='number'
           placeholder='# of days '
-          className='w-full mt-4 rounded-md bg-slate-400 dark:placeholder-slate-500 dark:bg-slate-200 px-2 py-5 outline-none placeholder-slate-700'
+          className='w-full mt-4 rounded-md bg-slate-400 text-slate-500 dark:placeholder-slate-500 dark:bg-slate-200 px-2 py-5 outline-none placeholder-slate-700'
           ref={inputRef1}
           required
         />
