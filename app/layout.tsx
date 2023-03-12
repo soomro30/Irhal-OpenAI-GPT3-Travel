@@ -31,7 +31,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             fontSans.variable
           )}
         >
-          <SiteHeader />
+          {/* <SiteHeader /> */}
           <main className='flex flex-col items-center'>{children}</main>
           <TailwindIndicator />
         </body>

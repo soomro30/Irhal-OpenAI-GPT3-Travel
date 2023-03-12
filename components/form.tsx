@@ -87,24 +87,24 @@ const Form = () => {
           name='prompt'
           type='text'
           placeholder='city name e.g London, New York, Oslo'
-          className='w-full rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-5 outline-none placeholder-slate-700'
+          className='w-full rounded-md bg-slate-400 dark:placeholder-slate-500 dark:bg-slate-200 px-2 py-5 outline-4 placeholder-slate-700	'
           ref={inputRef}
           required
         />
        <input
           name='duration'
           type='number'
-          placeholder='trip duration in days '
-          className='w-full mt-4 rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-5 outline-none placeholder-slate-700'
+          placeholder='# of days '
+          className='w-full mt-4 rounded-md bg-slate-400 dark:placeholder-slate-500 dark:bg-slate-200 px-2 py-5 outline-none placeholder-slate-700'
           ref={inputRef1}
           required
         />
 
-        
-          <DatePicker className='w-full mt-4 rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-5 outline-none placeholder-slate-700' selected={startDate} onChange={(date: Date) => setStartDate(date!)} />
+      
+         <DatePicker className='w-full mt-4 rounded-md bg-slate-400 text-slate-500 dark:placeholder-slate-500 dark:bg-slate-200 px-2 py-5 outline-none placeholder-slate-700' selected={startDate} onChange={(date: Date) => setStartDate(date!)} />
 
           <select 
-             className='w-full mt-4 rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-5 outline-none placeholder-slate-700 pt-6 pb-6'
+             className='w-full mt-4 rounded-md bg-slate-400 text-slate-500 dark:placeholder-slate-500 dark:bg-slate-200 px-2 py-5 outline-none placeholder-slate-700 pt-6 pb-6'
              ref={inputRef2}
              required
              placeholder='Trip Budget '
@@ -129,10 +129,10 @@ const Form = () => {
     <div className="p-4">
     {response && (parse(message) )}
       <code className='text-md whitespace-pre-wrap'>{response.join('')}</code>
-      <code  className="whitespace-pre-wrap text-lg ">
+      {/* <code  className="whitespace-pre-wrap text-lg ">
         <br/><br/>
         Visit <a className="no-underline font-bold text-slate-50 hover:underline "  href={`https://irhal.org/`} >Irhal</a> for Muslim travelers friendly information.
-      </code >
+      </code > */}
       <div className='flex flex-row justify-between mt-4'>
         <Button variant='ghost' size='sm' onClick={handleCopy}>
           {hasCopied ? <Icons.check className='text-3xl text-green-500 hover:text-green-600 cursor-pointer' /> : <Icons.copy className='text-3xl text-gray-500 hover:text-gray-600 cursor-pointer' />}
