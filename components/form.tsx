@@ -109,11 +109,11 @@ const Form = () => {
           }
           placeholder="trip start date"
           
-          className='w-full mt-4 rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-5 outline-none placeholder-slate-700'
+          className='block w-full px-4 py-3 mt-4 rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-5 outline-none placeholder-slate-700'
           />
 
           <select
-             className='w-full mt-4 rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-5 outline-none placeholder-slate-700'
+             className='block w-full px-4 py-3 mt-4 rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-5 outline-none placeholder-slate-700'
              ref={inputRef2}
              required
              placeholder='Trip Budget '
