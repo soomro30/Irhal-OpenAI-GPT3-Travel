@@ -117,7 +117,7 @@ const Form = () => {
           <DatePicker className='w-full mt-4 rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-5 outline-none placeholder-slate-700' selected={startDate} onChange={(date: Date) => setStartDate(date!)} />
 
           <select 
-             className='data-te-select-size="lg" w-full px-4 py-3 mt-4 rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-5 outline-none placeholder-slate-700 pt-4 pb-4'
+             className='w-full mt-4 rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-5 outline-none placeholder-slate-700 pt-6 pb-6'
              ref={inputRef2}
              required
              placeholder='Trip Budget '
