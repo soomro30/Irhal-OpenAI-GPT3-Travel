@@ -1,7 +1,10 @@
 import { OpenAIStream, OpenAIStreamPayload } from '@/utils/OpenAIStream'
 
 type RequestData = {
-  input: string
+  input: string,
+  duration: string, 
+  tripDate: Date, 
+  budgetType: string
 }
 
 if (!process.env.OPENAI_API_KEY) {
@@ -11,7 +14,7 @@ if (!process.env.OPENAI_API_KEY) {
 export const runtime = 'edge'
 
 export default async function handler(request: Request) {
-  const { input } = (await request.json()) as RequestData
+  const { input, duration, tripDate, budgetType } = (await request.json()) as RequestData
 
   function generatePrompt(data: string) {
     const prompt = `
@@ -24,11 +27,11 @@ export default async function handler(request: Request) {
     - use only public transport and apps like Uber
     
     Create a travel itenary, based on the following:
-    Start date: 2023.10.21 21:00
-    Trip Duration: 2 days
+    Start date: ${tripDate}
+    Trip Duration: ${duration}
     Travel method: Air
-    Destination: London
-    Travel buget: Medium
+    Destination: ${input}
+    Travel buget: ${budgetType}
     
     Things I want to see/experience: 
     - Experience local culture
@@ -67,7 +70,7 @@ export default async function handler(request: Request) {
     top_p: 1,
     frequency_penalty: 0,
     presence_penalty: 0,
-    max_tokens: 1,
+    max_tokens: 800,
     stream: true,
     n: 1,
   }

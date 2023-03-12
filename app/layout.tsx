@@ -24,7 +24,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+      <ThemeProvider attribute='class' defaultTheme='dark' enableSystem>
         <body
           className={cn(
             'min-h-screen bg-white font-sans text-slate-900 antialiased dark:bg-gradient-to-b from-[#191919] to-[#15162c] dark:text-slate-50 flex flex-col items-center',

@@ -47,7 +47,7 @@ const Form = () => {
     if (!data) {
       return
     }
-    setMessage('<p className="text-lg" >Here is your <span className="no-underline font-bold text-slate-50">'+ inputRef1.current!.value+'</span> days halal travel itinerary to <a className="no-underline font-bold text-slate-50 hover:underline" href="https://irhal.org/travel-guide/'+inputRef.current!.value+'">'+inputRef.current!.value+'</a></p>');
+    setMessage('<code  className="whitespace-pre-wrap text-lg" >Here is your <span className="no-underline font-bold text-slate-50">'+ inputRef1.current!.value+'</span> days halal travel itinerary to <a className="no-underline font-bold text-slate-50 hover:underline" href="https://irhal.org/travel-guide/'+inputRef.current!.value+'">'+inputRef.current!.value+'</a></code><br/><br/>');
     html = `
   <p id="main">
     <span class="prettify">
@@ -138,21 +138,22 @@ const Form = () => {
     <div>
     {response && (parse(message) )}
       <code className='text-md whitespace-pre-wrap'>{response.join('')}</code>
-      <h2 className="text-md ">
+      <code  className="whitespace-pre-wrap text-lg ">
+        <br/><br/>
         Visit <a className="no-underline font-bold text-slate-50 hover:underline "  href={`https://irhal.org/`} >Irhal</a> for Muslim travelers friendly information.
-      </h2>
+      </code >
       <div className='flex flex-row justify-between mt-4'>
         <Button variant='ghost' size='sm' onClick={handleCopy}>
           {hasCopied ? <Icons.check className='text-3xl text-green-500 hover:text-green-600 cursor-pointer' /> : <Icons.copy className='text-3xl text-gray-500 hover:text-gray-600 cursor-pointer' />}
         </Button>
         <div className='flex flex-row'>
-          <a href={`https://wa.me/?text=${encodeURIComponent(response.join(''))}`} target='_blank' rel='noreferrer'>
+          <a className='text-md whitespace-pre-wrap' href={`https://wa.me/?text=${encodeURIComponent(response.join(''))}`} target='_blank' rel='noreferrer'>
             <FaWhatsapp className='mx-2 text-4xl text-green-500 hover:text-green-600 cursor-pointer' />
           </a>
-          <a href={`mailto:?subject=Itinerary&body=${encodeURIComponent(response.join(''))}`} target='_blank' rel='noreferrer'>
+          <a className='text-md whitespace-pre-wrap' href={`mailto:?subject=Itinerary&body=${encodeURIComponent(response.join(''))}`} target='_blank' rel='noreferrer'>
             <FaEnvelope className='mx-2 text-4xl text-yellow-500 hover:text-yellow-600 cursor-pointer' />
           </a>
-          <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(response.join(''))}`} target='_blank' rel='noreferrer'>
+          <a className='text-md whitespace-pre-wrap' href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(response.join(''))}`} target='_blank' rel='noreferrer'>
             <FaTwitter className='mx-2 text-4xl text-blue-500 hover:text-blue-600 cursor-pointer' />
           </a>
         </div>
