@@ -20,13 +20,7 @@ const Form = () => {
   const [startDate, setStartDate] = useState(new Date());
   const ref = useRef();
 
-function handleClick() {
-  // Create the result URL
-  const resultUrl = "https://example.com/result";
-  
-  // Open the result in a new tab
-  window.open(resultUrl, "_blank");
-}
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log(inputRef.current!.value, inputRef1.current!.value, inputRef2.current!.value)
@@ -123,10 +117,6 @@ function handleClick() {
         >
           Generate itinerary
         </button>
-
-        <div>
-      <button onClick={handleClick}>Click me!</button>
-    </div>
       </form>
       <div className='w-full rounded-md bg-slate-400 dark:placeholder-slate-300 dark:bg-slate-800 px-2 py-4 outline-none placeholder-slate-700 flex flex-row justify-between mt-4'>
   
